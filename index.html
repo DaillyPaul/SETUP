@@ -5,9 +5,23 @@
     <title>Cirious Game</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="shortcut icon" type="image/x-icon"/>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css'/>
-    <script defer src="main.js"></script>
+    <script src="https://pixijs.download/release/pixi.min.js"></script>
   </head>
   <body>
-  </body>
+    <script>
+      // Create the application helper and add its render target to the page
+      let app = new PIXI.Application({ width: 640, height: 360 });
+      document.body.appendChild(app.view);
+
+      // Create the sprite and add it to the stage
+      let sprite = PIXI.Sprite.from('sample.png');
+      app.stage.addChild(sprite);
+
+      // Add a ticker callback to move the sprite back and forth
+      let elapsed = 0.0;
+      app.ticker.add((delta) => {
+        elapsed += delta;
+        sprite.x = 100.0 + Math.cos(elapsed/50.0) * 100.0;
+      });
+    </script>
 </html>
